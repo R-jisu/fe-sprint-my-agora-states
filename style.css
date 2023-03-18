@@ -263,8 +263,8 @@ textarea {
   filter: drop-shadow(5px 5px 0px rgba(138, 138, 138, 0.212));
 }
 
-.Btn-scroll-top,
-.Btn-scroll-bottom {
+.Btn-page-back,
+.Btn-page-next {
   width: 60px;
   height: 60px;
   color: black;
@@ -277,8 +277,8 @@ textarea {
   opacity: 0.8;
 }
 
-.Btn-scroll-top:hover,
-.Btn-scroll-bottom:hover {
+.Btn-page-back:hover,
+.Btn-page-next:hover {
   border: inset 4px solid transparent;
   background-color: #8c28cd;
   opacity: 1;

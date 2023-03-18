@@ -9,6 +9,16 @@ const $BtnSubmit = document.querySelector(".Btn__submit");
 const $ul = document.querySelector("ul.discussions__container");
 const $cntQ = document.querySelector(".count-Q");
 
+let data;
+const dataFromLocalStorage = localStorage.getItem("allQ");
+if (dataFromLocalStorage) data = JSON.parse(dataFromLocalStorage);
+else data = agoraStatesDiscussions.slice();
+
+let limit = 10;
+let page = 1;
+
+let cryFlag = 0;
+
 const toDay = () => {
   const today = new Date();
   const year = today.getFullYear();
@@ -40,21 +50,36 @@ const questionToObject = () => {
 };
 //로컬스토리지에 저장
 const localStore = (obj) => {
-  let addNewQ = JSON.parse(localStorage.getItem("allQ"));
-  if (addNewQ == null) addNewQ = [];
-  localStorage.setItem("newQ", JSON.stringify(obj));
-  addNewQ.unshift(obj);
-  localStorage.setItem("allQ", JSON.stringify(addNewQ));
+  data.unshift(obj);
+  localStorage.setItem("allQ", JSON.stringify(data));
 };
+
+const getPage = (limit, page) => {
+  const len = data.length - 1;
+  let pageStart = Number(page - 1) * Number(limit);
+  let pageEnd = Number(pageStart) + Number(limit);
+  if (page < 0) page = 0;
+  if (pageEnd >= len) {
+    pageEnd = len;
+  }
+  return { pageStart, pageEnd };
+};
+
 //re렌더링
-const rerender = () => {
-  const allDiscussions = [
-    ...JSON.parse(localStorage.getItem("allQ")),
-    ...agoraStatesDiscussions,
-  ];
-  $ul.replaceChildren();
-  $ul.append(convertToDiscussion(allDiscussions));
-  countQ(allDiscussions.length);
+const render = (el, from, to) => {
+  if (!from && !to) {
+    from = 0;
+    to = 10;
+  }
+
+  if (cryFlag) {
+    from = 0;
+    to = data.length - 1;
+  }
+  console.log(to);
+  el.replaceChildren();
+  el.append(convertToDiscussion(data, from, to));
+  countQ(data.length);
   return;
 };
 const countQ = (length) => {
@@ -72,7 +97,10 @@ const formSubmit = (e) => {
   e.preventDefault();
   //local 저장
   localStore(questionToObject());
-  rerender($ul);
+  render($ul);
+  cryFlag = 0;
+  document.querySelector(".all-list").click();
+  //초기화
   $inputTitle.value = "";
   $inputName.value = "";
   $inputTextbox.value = "";
@@ -84,5 +112,52 @@ const formSubmit = (e) => {
 };
 
 $BtnSubmit.addEventListener("click", formSubmit);
+
+const $back = document.querySelector(".Btn-page-back");
+const $next = document.querySelector(".Btn-page-next");
+
+$back.addEventListener("click", () => {
+  if (cryFlag) return;
+  if (page > 1) page -= 1;
+  const { pageStart, pageEnd } = getPage(limit, page);
+  render($ul, pageStart, pageEnd);
+});
+
+$next.addEventListener("click", () => {
+  if (cryFlag) return;
+  if (limit * page < data.length - 1) page += 1;
+  const { pageStart, pageEnd } = getPage(limit, page);
+  render($ul, pageStart, pageEnd);
+});
+
+const $Btn_allList = document.querySelector(".all-list");
+const $Btn_onlyCry = document.querySelector(".only-cry");
+
+const viewOnlyNeedAnswer = () => {
+  $Btn_onlyCry.classList.add("clicked");
+  $Btn_allList.classList.remove("clicked");
+  cryFlag = 1;
+  render($ul);
+  const $li = document.querySelectorAll("li");
+  $li.forEach((el) => {
+    if (el.textContent.includes("😍")) {
+      el.classList.add("hide-list");
+    }
+  });
+};
+
+const viewAll = () => {
+  $Btn_allList.classList.add("clicked");
+  $Btn_onlyCry.classList.remove("clicked");
+  cryFlag = 0;
+  render($ul, 0, 10);
+  const $li = document.querySelectorAll("li");
+  $li.forEach((el) => {
+    el.classList.remove("hide-list");
+  });
+};
+
+$Btn_allList.addEventListener("click", viewAll);
+$Btn_onlyCry.addEventListener("click", viewOnlyNeedAnswer);
 
 export default countQ;

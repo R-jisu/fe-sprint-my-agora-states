@@ -1,113 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Agora States</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.8/purify.js"
+      integrity="sha512-QaF+0tDlqVmwZaQSc0kImgYmw+Cd66TxA5D9X70I5V9BNSqk6yBTbyqw2VEUsVYV5OTbxw8HD9d45on1wvYv7g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Agora States</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.8/purify.js"
-    integrity="sha512-QaF+0tDlqVmwZaQSc0kImgYmw+Cd66TxA5D9X70I5V9BNSqk6yBTbyqw2VEUsVYV5OTbxw8HD9d45on1wvYv7g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-</head>
+  <body>
+    <header>
+      <a
+        target="_blank"
+        href="https://www.codestates.com/?gclid=Cj0KCQiAgaGgBhC8ARIsAAAyLfGZ0XOrb46kGbKEscv6jaxSdZzUPav1f3oVOnozzs8BHizrfj5CNjAaAmf_EALw_wcB"
+        ><img src="./src/codestates-logo.png" alt="codestates-logo"
+      /></a>
+    </header>
+    <main>
+      <section class="video__container">
+        <video autoplay muted loop>
+          <source src="./src/tape.mp4" type="video/mp4" />
+        </video>
+        <div class="video__title">
+          <h1>My Agora States</h1>
+          <p>&nbsp;"When in doubt, choose change"&nbsp;</p>
+        </div>
+      </section>
 
-<body>
-  <header>
-    <a target="_blank"
-      href="https://www.codestates.com/?gclid=Cj0KCQiAgaGgBhC8ARIsAAAyLfGZ0XOrb46kGbKEscv6jaxSdZzUPav1f3oVOnozzs8BHizrfj5CNjAaAmf_EALw_wcB"><img
-        src="./src/codestates-logo.png" alt="codestates-logo"></a>
-  </header>
-  <main>
-
-    <section class="video__container">
-      <video autoplay muted loop>
-        <source src="./src/tape.mp4" type="video/mp4">
-      </video>
-      <div class="video__title">
-        <h1>My Agora States</h1>
-        <p>&nbsp;"When in doubt, choose change"&nbsp;</p>
+      <div class="state">
+        <span class="bounce" style="--i: 1">총&nbsp;</span>
+        <span class="count-Q bounce" style="--i: 2">n개의</span>
+        <span class="bounce" style="--i: 3">&nbsp;질문을&nbsp;</span>
+        <span class="bounce" style="--i: 4">수집했습니다.</span>
       </div>
-    </section>
 
-    <div class="state">
-      <span class="bounce" style="--i:1">총&nbsp;</span>
-      <span class="count-Q bounce" style="--i:2">n개의</span>
-      <span class="bounce" style="--i:3">&nbsp;질문을&nbsp;</span>
-      <span class="bounce" style="--i:4">수집했습니다.</span>
-    </div>
+      <div class="filtering">
+        <div class="all-list clicked">All</div>
+        <div class="only-cry">Not<br />Answered</div>
+      </div>
 
-    <div class="filtering">
-      <div class="all-list clicked">All</div>
-      <div class="only-cry ">Not<br>Answered</div>
-    </div>
-
-    <div class="wrapping">
-      <div class="onewoo">
-        <section class="form__container">
-          <p>질문을 입력하세요.</p>
-          <form action="" method="get" class="form">
-            <div class="form__input--wrapper">
-              <div class="form__input--name">
-                <input type="text" name="name" id="name" placeholder="이름" required>
+      <div class="wrapping">
+        <div class="onewoo">
+          <section class="form__container">
+            <p>질문을 입력하세요.</p>
+            <form action="" method="get" class="form">
+              <div class="form__input--wrapper">
+                <div class="form__input--name">
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    placeholder="이름"
+                    required
+                  />
+                </div>
+                <div class="form__input--title">
+                  <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    placeholder="제목"
+                    required
+                  />
+                </div>
+                <div class="form__textbox">
+                  <textarea
+                    id="story"
+                    name="story"
+                    placeholder="질문을 작성하세요"
+                    required
+                  ></textarea>
+                </div>
               </div>
-              <div class="form__input--title">
-                <input type="text" name="title" id="title" placeholder="제목" required>
+              <div class="form__submit">
+                <input class="Btn__submit" type="submit" value="질문하기" />
               </div>
-              <div class="form__textbox">
-                <textarea id="story" name="story" placeholder="질문을 작성하세요" required></textarea>
-              </div>
-            </div>
-            <div class="form__submit">
-              <input class="Btn__submit" type="submit" value="질문하기" />
-            </div>
-          </form>
-        </section>
+            </form>
+          </section>
 
-        <section class="discussion__wrapper">
-          <ul class="discussions__container">
-          </ul>
-        </section>
-        <div class="Btn-scroll">
-          <section class="Btn-scroll-top">Top</section>
-          <section class="Btn-scroll-bottom">Bottom</section>
+          <section class="discussion__wrapper">
+            <ul class="discussions__container"></ul>
+          </section>
+          <div class="Btn-scroll">
+            <section class="Btn-page-back">Back</section>
+            <section class="Btn-page-next">Next</section>
+          </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
 
-  <div class="modal">
-  </div>
-  <div class="modal_body">
-    <div class="modal-author">
-      <h2 class="modal-title"></h2>
-      <p class="modal-writer"></p>
-      <p class="modal-question">
-      </p>
-    </div>
+    <div class="modal"></div>
+    <div class="modal_body">
+      <div class="modal-author">
+        <h2 class="modal-title"></h2>
+        <p class="modal-writer"></p>
+        <p class="modal-question"></p>
+      </div>
 
-
-    <div class="modal-helper">
-      <div class="line"></div>
-      <h2 class="helper-title">답변</h2>
-      <p class="helper-writer"></p>
-      <p class="helper-answer">
-      </p>
+      <div class="modal-helper">
+        <div class="line"></div>
+        <h2 class="helper-title">답변</h2>
+        <p class="helper-writer"></p>
+        <p class="helper-answer"></p>
+      </div>
     </div>
-  </div>
-  <footer>
-    <div class="link">
-      <a href="https://github.com/R-jisu" target="_blank">R-jisu github</a>
-      <a href="https://i-did-it.tistory.com/" target="_blank">R-jisu blog</a>
-    </div>
-    <p>Thanks to : CSS 천재 이일우님과 오후 5:18에 모각코 2번방에 계신분들</p>
-  </footer>
-</body>
-<script type="module" src="./js/script.js"></script>
-<script type="module" src="./js/formInput.js"></script>
-<script type="module" src="./js/modal.js"></script>
-<script type="module" src="./js/fragment.js"></script>
-<script type="module" src="./js/onlyCrying.js"></script>
-<script type="module" src="./js/scroll.js"></script>
-
+    <footer>
+      <div class="link">
+        <a href="https://github.com/R-jisu" target="_blank">R-jisu github</a>
+        <a href="https://i-did-it.tistory.com/" target="_blank">R-jisu blog</a>
+      </div>
+      <p>Thanks to : CSS 천재 이일우님과 오후 5:18에 모각코 2번방에 계신분들</p>
+    </footer>
+  </body>
+  <script type="module" src="./js/script.js"></script>
+  <script type="module" src="./js/formInput.js"></script>
+  <script type="module" src="./js/modal.js"></script>
+  <script type="module" src="./js/fragment.js"></script>
 </html>
