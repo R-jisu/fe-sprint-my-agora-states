@@ -1,6 +1,5 @@
-import agoraStatesDiscussions from "./data.js";
 import convertToDiscussion from "./fragment.js"; // 개별 돔 생성
-
+import getData from "./script.js";
 const $form = document.querySelector("form");
 const $inputName = document.querySelector("#name");
 const $inputTitle = document.querySelector("#title");
@@ -47,7 +46,8 @@ const localStore = (obj) => {
   localStorage.setItem("allQ", JSON.stringify(addNewQ));
 };
 //re렌더링
-const rerender = () => {
+const rerender = async () => {
+  const agoraStatesDiscussions = await getData();
   const allDiscussions = [
     ...JSON.parse(localStorage.getItem("allQ")),
     ...agoraStatesDiscussions,
